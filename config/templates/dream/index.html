@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>웹 페이지 예제</title>
-</head>
-<body>
-    <h1 style="text-align: center;">큰 제목</h1>
-    <div style="text-align: center;">
-        <button onclick="location.href='{% url 'friend:friend' %}'" style="font-size: 16px; padding: 10px 20px;">첫 번째 버튼</button>
-        <span style="margin: 0 10px;"></span> <!-- 간격을 나타내는 빈 요소 추가 -->
-        <button onclick="location.href='{% url 'friend:friend' %}'" style="font-size: 16px; padding: 10px 20px;">친구와 대화</button>
+  </head>
+  <body>
+    <h1 style="text-align: center">큰 제목</h1>
+    <div style="text-align: center">
+      <button
+        onclick="location.href='{% url 'friend:friend' %}'"
+        style="font-size: 16px; padding: 10px 20px"
+      >
+        첫 번째 버튼
+      </button>
+      <span style="margin: 0 10px"></span>
+      <!-- 간격을 나타내는 빈 요소 추가 -->
+      <button
+        onclick="location.href='{% url 'friend:friend' %}'"
+        style="font-size: 16px; padding: 10px 20px"
+      >
+        친구와 대화
+      </button>
+      <span style="margin: 0 10px"></span>
+      <!-- 간격을 나타내는 빈 요소 추가 -->
+      <button
+        onclick="location.href='{% url 'story:story' %}'"
+        style="font-size: 16px; padding: 10px 20px"
+      >
+        이야기 만들기
+      </button>
     </div>
-</body>
+  </body>
 </html>
