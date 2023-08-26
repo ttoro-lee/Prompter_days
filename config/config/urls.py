@@ -22,4 +22,5 @@ from dream import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.index, name='index'), # '/' 에 해당되는 path
+    path('friend/', include("friend.urls")),
 ]
