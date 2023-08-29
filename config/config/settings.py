@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "dream",
     "friend",
     "story",
+    "setting_persona",
 ]
 
 MIDDLEWARE = [
