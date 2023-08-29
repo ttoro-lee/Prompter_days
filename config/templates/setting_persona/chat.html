@@ -189,7 +189,7 @@
           <ul class="menu-inner py-1">
             <!-- 친구와 대화하기 -->
             <li class="menu-item active">
-              <a href="/friend/" class="menu-link">
+              <a href="/setting_persona/" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-message-rounded-dots"></i>
                 <div data-i18n="Chatting">친구와 대화하기</div>
               </a>
@@ -218,7 +218,13 @@
         <div class="layout-page">
           <!-- Content wrapper -->
           <div id="chat-container">
-            <div id="chat-messages"></div>
+            <div id="chat-messages">
+              <p class="info">이름 :  {{ name }}</p>
+              <p class="info">나이 :  {{ age }}</p>
+              <p class="info">성별 :  {{ gender }}</p>    
+              <p class="info">좋아하는 것 :  {{ likes }}</p>
+              <p class="info">싫어하는 것 :  {{ dislikes }}</p>
+            </div>
             <div
               class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
               id="user-input"
