@@ -31,3 +31,6 @@ from django.conf import settings
 
 def index(request):
     return render(request, 'friend/chat.html')
+
+#def index(request):
+#    return render(request, 'friend/layouts-without-navbar.html')
