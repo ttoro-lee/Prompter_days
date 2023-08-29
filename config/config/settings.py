@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "dream",
-    "friend",
     "story",
     "setting_persona",
 ]
