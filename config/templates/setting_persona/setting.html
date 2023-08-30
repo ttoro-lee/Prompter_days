@@ -217,17 +217,22 @@
                 <div class="col-md-6">
                   <div class="card mb-4">
                     <form method="post">
-                      {% csrf_token %}
-                      {{ form.non_field_errors }}
-                    
+                      {% csrf_token %} {{ form.non_field_errors }}
+
                       <div class="card-body">
                         {% for field in form %}
-                          <div class="mt-2 mb-3">
-                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                            {{ field }}
-                          </div>
+                        <div class="mt-2 mb-3">
+                          <label
+                            for="{{ field.id_for_label }}"
+                            class="form-label"
+                            >{{ field.label }}</label
+                          >
+                          {{ field }}
+                        </div>
                         {% endfor %}
-                        <button type="submit" class="btn btn-primary">저장</button>
+                        <button type="submit" class="btn btn-primary">
+                          저장
+                        </button>
                       </div>
                     </form>
                   </div>
