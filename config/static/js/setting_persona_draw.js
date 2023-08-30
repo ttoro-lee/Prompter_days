@@ -21,20 +21,21 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!isDrawing) return;
 
     const color = colorPicker.value;
-    context.lineWidth = 4;
+    context.lineWidth = 3;
     context.lineCap = "round";
     context.strokeStyle = color;
 
-    context.lineTo(
-      event.clientX - canvas.offsetLeft,
-      event.clientY - canvas.offsetTop
-    );
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+
+    const canvasX = (event.clientX - rect.left) * scaleX;
+    const canvasY = (event.clientY - rect.top) * scaleY;
+
+    context.lineTo(canvasX, canvasY);
     context.stroke();
     context.beginPath();
-    context.moveTo(
-      event.clientX - canvas.offsetLeft,
-      event.clientY - canvas.offsetTop
-    );
+    context.moveTo(canvasX, canvasY);
   }
 
   canvas.addEventListener("mousemove", draw);
@@ -42,9 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
   canvas.addEventListener("mouseup", stopDrawing);
   canvas.addEventListener("mouseout", stopDrawing);
 
-document.getElementById("saveButton").addEventListener("click", function() {
-    window.location.href = "chatting";
-});
+  // document.getElementById("saveButton").addEventListener("click", function () {
+  //   window.location.href = "chatting";
+  // });
 
   // const saveButton = document.getElementById("saveButton");
   // saveButton.addEventListener("click", function () {
