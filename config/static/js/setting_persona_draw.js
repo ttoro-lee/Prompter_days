@@ -42,9 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
   canvas.addEventListener("mouseup", stopDrawing);
   canvas.addEventListener("mouseout", stopDrawing);
 
-document.getElementById("saveButton").addEventListener("click", function() {
+  document.getElementById("saveButton").addEventListener("click", function () {
     window.location.href = "chatting";
-});
+  });
 
   // const saveButton = document.getElementById("saveButton");
   // saveButton.addEventListener("click", function () {
