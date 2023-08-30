@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
   canvas.addEventListener("mouseup", stopDrawing);
   canvas.addEventListener("mouseout", stopDrawing);
 
+
   // document.getElementById("saveButton").addEventListener("click", function () {
   //   window.location.href = "chatting";
   // });
