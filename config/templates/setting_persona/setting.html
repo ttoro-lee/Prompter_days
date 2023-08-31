@@ -292,5 +292,29 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
     <script src="{% static 'js/setting_persona_draw.js' %}"></script>
+    <script>
+      document.getElementById("createButton").addEventListener("click", function() {
+        // 버튼 클릭 시 호출할 함수
+        createFriend();
+      });
+
+      function createFriend() {
+        fetch("{% url 'setting_persona:get_friend_image' %}")  // Django 뷰의 URL로 변경해야 함
+          .then(response => response.json())
+          .then(data => {
+            const imageUrl = data.image_url;
+            const image = new Image();
+            image.onload = function() {
+              const canvas = document.getElementById("characterCanvas");
+              const context = canvas.getContext("2d");
+              canvas.width = image.width;
+              canvas.height = image.height;
+              context.drawImage(image, 0, 0);
+            };
+            image.src = imageUrl;
+          })
+          .catch(error => console.error(error));
+      };
+    </script>
   </body>
 </html>
