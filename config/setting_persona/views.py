@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from .forms import FriendForm
 import openai
 import os, json
@@ -6,22 +7,9 @@ from pathlib import Path
 from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import ImproperlyConfigured
+from config.settings import get_secret
 
-# 프로젝트 루트로부터 secrets.json 파일 경로 찾기
-BASE_DIR = Path(__file__).resolve().parent.parent
-secret_file = os.path.join(BASE_DIR, 'secrets.json')
-
-with open(secret_file) as f:
-    secrets = json.loads(f.read())
-
-def get_env_variable(key):
-    try:
-        return secrets[key]
-    except KeyError:
-        error_msg = f"Set the {key} environment variable"
-        raise ImproperlyConfigured(error_msg)
-
-OPENAI_KEY = get_env_variable("OPENAI_KEY")
+OPENAI_KEY = get_secret("OPENAI_KEY")
 
 openai.api_key = OPENAI_KEY
 
@@ -61,3 +49,16 @@ def index(request):
 
 def chatting(request):
     return render(request, 'setting_persona/chat.html')
+
+def get_friend_image(request):
+    response = openai.Image.create(
+        prompt="illustration of cute, dog wearing hat and angry. child style",
+        # tag를 받아오면, GPT-4 -> 하나의 번역된 문장으로 만들어줘 -> 달리2 이미지 생성
+        n=1,
+        size="256x256"
+    )
+    image_url = response['data'][0]['url']
+    print(image_url)
+
+    # 이미지 URL 반환
+    return JsonResponse({"image_url": image_url})

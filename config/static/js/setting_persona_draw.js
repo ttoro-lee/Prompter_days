@@ -43,11 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
   canvas.addEventListener("mouseup", stopDrawing);
   canvas.addEventListener("mouseout", stopDrawing);
 
-
-  // document.getElementById("saveButton").addEventListener("click", function () {
-  //   window.location.href = "chatting";
-  // });
-
   // const saveButton = document.getElementById("saveButton");
   // saveButton.addEventListener("click", function () {
   //   const characterName = document.getElementById("characterName").value;
@@ -86,4 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
   clearButton.addEventListener("click", function () {
     context.clearRect(0, 0, canvas.width, canvas.height);
   });
+});
+
+document.getElementById("saveButton").addEventListener("click", function () {
+  window.location.href = "chatting";
 });
