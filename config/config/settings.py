@@ -38,6 +38,8 @@ def get_secret(setting):
 
 SECRET_KEY = get_secret("SECRET_KEY")
 
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.path.join(BASE_DIR, 'google_vision_api.json')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

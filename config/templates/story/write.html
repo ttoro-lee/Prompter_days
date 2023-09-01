@@ -291,13 +291,12 @@
                         id="imageUpload formFile"
                         accept="image/*"
                       />
-                      <textarea
-                        type="text"
-                        class="form-control shadow-none"
-                        id="textUpload"
-                        placeholder="내용을 입력하세요"
-                        aria-label="Search..."
-                      ></textarea>
+                      <form id="myForm" method="post">
+                        {% csrf_token %} {{ form.non_field_errors }}
+                        {% for field in form %}
+                          {{ field }}
+                        {% endfor %}
+                      </form>
                       <button id="storyButton" class="btn btn-success">
                         이야기 만들기
                       </button>
@@ -331,11 +330,24 @@
     <script src="{% static 'assets/js/main.js' %}"></script>
 
     <!-- Page JS -->
+    <script>
+      const canvas = document.getElementById('drawingCanvas');
+      const canvasImageInput = document.getElementById('id_canvas_image');
+      const saveButton = document.getElementById('storyButton');
+      
+      // 캔버스에 그림을 그리는 로직을 추가 (canvas에 이미지를 그리는 등)
+      
+      saveButton.addEventListener('click', function() {
+          // 이미지 데이터를 input 필드에 설정
+          canvasImageInput.value = canvas.toDataURL();
+          
+          // 폼 제출
+          document.getElementById('myForm').submit();
+      });
+    </script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-    <script src="{% static 'js/chatbot.js' %}"></script>
     <script src="{% static 'js/drawing.js' %}"></script>
     <script src="{% static 'js/write.js' %}"></script>
   </body>
