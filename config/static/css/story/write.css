@@ -40,9 +40,17 @@ body {
   padding: 10px;
 }
 
-/* .card-body {
+#openCanvas {
+  margin: 0px auto;
+  width: calc(3rem + 2px);
+  height: calc(3rem + 2px);
+}
+#openCanvas .bx {
+  font-size: 2rem;
+}
+.card {
   display: none;
-} */
+}
 #canvasClose {
   display: flex;
   justify-content: flex-end;
