@@ -241,11 +241,11 @@
                 </a>
               </div>
               <div id="chat-messages">
-                <p class="info">이름 : {{ name }}</p>
-                <p class="info">나이 : {{ age }}</p>
-                <p class="info">성별 : {{ gender }}</p>
-                <p class="info">좋아하는 것 : {{ likes }}</p>
-                <p class="info">싫어하는 것 : {{ dislikes }}</p>
+                <p class="info" id="name">이름 : {{ name }}</p>
+                <p class="info" id="age">나이 : {{ age }}</p>
+                <p class="info" id="gender">성별 : {{ gender }}</p>
+                <p class="info" id="likes">좋아하는 것 : {{ likes }}</p>
+                <p class="info" id="dislikes">싫어하는 것 : {{ dislikes }}</p>
                 <div class="bs-toast toast ai-message show bg-primary">
                   <img src="{{ canvas_image_data }}" alt="프로필 이미지" class="profile-image" id="ai_chat">챗봇: 안녕하세요! 무엇을 도와드릴까요?</div>
               </div>
