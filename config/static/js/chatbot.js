@@ -6,8 +6,23 @@ const userInput = document.querySelector("#user-input input");
 const sendButton = document.querySelector("#user-input button");
 
 // 발급받은 OpenAI API 키를 변수로 저장
-const secrets = require('../../secrets.json');
-const apiKey = secrets.OPENAI_KEY;
+let apiKey;
+
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("/setting_persona/get_sensitive_data/")  // 서버의 API 엔드포인트로 요청 보내기
+      .then(response => response.json())  // JSON 응답 파싱
+      .then(data => {
+          // 받아온 데이터에서 api_key 값을 변수에 저장
+          apiKey = data.api_key;
+
+          // apiKey 값을 페이지의 특정 요소에 표시
+      })
+      .catch(error => {
+          console.error("Error fetching API key:", error);
+      });
+});
+// const secrets = require('../../secrets.json');
+// const apiKey = secrets.OPENAI_KEY;
 // OpenAI API 엔드포인트 주소를 변수로 저장
 const apiEndpoint = "https://api.openai.com/v1/chat/completions";
 function addMessage(sender, message) {
@@ -22,8 +37,35 @@ function addMessage(sender, message) {
   } else {
     messageElement.className = "bs-toast toast ai-message show bg-primary";
     // 채팅 메시지 목록에 새로운 메시지 추가
-    messageElement.textContent = `${sender}: ${message}`;
-    chatMessages.prepend(messageElement);
+    const otherImage = document.getElementById('ai_chat'); // 예시: ID를 사용한 선택
+
+    if (otherImage) {
+        // 이미지 엘리먼트가 존재하는 경우
+        const otherImageUrl = otherImage.src; // 이미지 엘리먼트의 src 속성 값을 가져옵니다.
+        
+        const imageElement = document.createElement("img");
+        imageElement.src = otherImageUrl; // 이미지 데이터 URL 설정
+        imageElement.alt = "프로필 이미지";
+        imageElement.className = "profile-image";
+        imageElement.id = "ai_chat";
+        messageElement.appendChild(imageElement);
+        const textElement = document.createElement('span')
+        textElement.textContent = `${sender}: ${message}`
+        messageElement.appendChild(textElement)
+        chatMessages.prepend(messageElement);
+    } else {
+        console.log('이미지를 찾을 수 없습니다.');
+        const imageElement = document.createElement("img");
+        imageElement.src = null; // 이미지 데이터 URL 설정
+        imageElement.alt = "프로필 이미지";
+        imageElement.className = "profile-image";
+        imageElement.id = "ai_chat";
+        messageElement.appendChild(imageElement);
+        const textElement = document.createElement('span')
+        textElement.textContent = `${sender}: ${message}`
+        messageElement.appendChild(textElement)
+        chatMessages.prepend(messageElement);
+    }
   }
 }
 // ChatGPT API 요청

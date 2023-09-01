@@ -83,6 +83,3 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.getElementById("saveButton").addEventListener("click", function () {
-  window.location.href = "chatting";
-});

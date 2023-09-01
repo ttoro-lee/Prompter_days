@@ -2,6 +2,7 @@ from django import forms
 from .models import Friend
 
 class FriendForm(forms.ModelForm):
+    canvas_image = forms.CharField(widget=forms.HiddenInput)
     character_name = forms.CharField(
         label="친구의 이름",
         widget=forms.TextInput(attrs={"class": "form-control form-control-lg"}),
