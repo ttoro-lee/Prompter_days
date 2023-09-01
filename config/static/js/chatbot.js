@@ -70,6 +70,13 @@ function addMessage(sender, message) {
 }
 // ChatGPT API 요청
 async function fetchAIResponse(prompt) {
+  const name = document.getElementById('name').textContent;
+  const age = document.getElementById('age').textContent;
+  const gender = document.getElementById('gender').textContent;
+  const likes = document.getElementById('likes').textContent;
+  const dislikes = document.getElementById('dislikes').textContent;
+  console.log(name, age, gender, likes, dislikes);
+
   // API 요청에 사용할 옵션을 정의
   const requestOptions = {
     method: "POST",
@@ -79,12 +86,16 @@ async function fetchAIResponse(prompt) {
       Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model: "gpt-3.5-turbo", // 사용할 AI 모델
+      model: "gpt-4", // 사용할 AI 모델
       messages: [
         {
-          role: "user", // 메시지 역할을 user로 설정
-          content: prompt, // 사용자가 입력한 메시지
+          role: "system", // 메시지 역할을 user로 설정
+          content: "Answer kindly and simply, as if you were talking to a child, user name is not" + name + "and " + age + " " + gender + " " + likes + " " + dislikes, // 사용자가 입력한 메시지
         },
+        {
+          role : 'user',
+          content: prompt,
+        }
       ],
       temperature: 0.8, // 모델의 출력 다양성
       max_tokens: 1024, // 응답받을 메시지 최대 토큰(단어) 수 설정
