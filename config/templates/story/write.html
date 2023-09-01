@@ -213,6 +213,7 @@
                 </a>
               </div>
               <div id="chat-messages"></div>
+              {% comment %}
               <div class="card mb-4" id="all-input">
                 <div class="card-body">
                   <div class="col-md" id="canvasClose">
@@ -256,6 +257,51 @@
                   <button id="storyButton" class="btn btn-success">
                     이야기 만들기
                   </button>
+                </div>
+              </div>
+              {% endcomment %}
+              <div class="card mb-4" id="all-input">
+                <div class="card-body">
+                  <div class="col-md" id="canvasClose">
+                    <button class="btn-close"></button>
+                  </div>
+                  <div class="row gy-3">
+                    <div class="col-md" id="canvas">
+                      <canvas
+                        id="drawingCanvas"
+                        width="256"
+                        height="256"
+                      ></canvas>
+                      <div id="drawingButton">
+                        <input type="color" id="colorPicker" /> &nbsp;&nbsp;
+                        <button class="btn btn-primary" id="eraseButton">
+                          지우개
+                        </button>
+                        &nbsp;&nbsp;
+                        <button class="btn btn-primary" id="clearButton">
+                          그림 지우기
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-md" id="canvasButton">
+                      <input
+                        type="file"
+                        class="form-control"
+                        id="imageUpload formFile"
+                        accept="image/*"
+                      />
+                      <textarea
+                        type="text"
+                        class="form-control shadow-none"
+                        id="textUpload"
+                        placeholder="내용을 입력하세요"
+                        aria-label="Search..."
+                      ></textarea>
+                      <button id="storyButton" class="btn btn-success">
+                        이야기 만들기
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

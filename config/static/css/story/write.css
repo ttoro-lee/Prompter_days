@@ -40,36 +40,46 @@ body {
   padding: 10px;
 }
 
-.card-body {
+/* .card-body {
   display: none;
-}
+} */
 #canvasClose {
   display: flex;
   justify-content: flex-end;
 }
 #canvas {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 256px;
-  height: 256px;
+  flex: 1;
 }
 #drawingCanvas {
   flex: 1;
   border: 1px solid #d9dee3;
   border-radius: 0.5rem;
 }
-#canvasButton {
+#drawingButton {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  padding-top: 10px;
+}
+#canvasButton {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
   margin-top: 16px;
+  flex: 3;
 }
-.form-control {
-  width: 30vw;
+#canvasButton textarea {
+  font-size: 1rem;
 }
-hr {
-  display: none;
+#textUpload {
+  flex: 1;
+  margin: 10px 0px;
+  resize: none;
+}
+#storyButton {
+  margin-left: auto;
 }
 
 .toast {
