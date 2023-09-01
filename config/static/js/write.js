@@ -1,18 +1,14 @@
-// 캔버스
-const canvasBody = document.querySelector(".card-body");
-// 구분선
-const line = document.querySelector(".m-0");
 // 닫기 버튼
 const closeButton = document.querySelector("#canvasClose button");
 // 입력 영역
-const input = document.querySelector("#user-input input");
+const openCanvas = document.querySelector("#openCanvas");
 
 closeButton.addEventListener("click", (event) => {
-  $(".card-body").hide();
-  $(".m-0").hide();
+  $(".card").hide();
+  $("#openCanvas").show();
 });
 
-input.addEventListener("click", (event) => {
-  $(".card-body").show();
-  $(".m-0").show();
+openCanvas.addEventListener("click", (event) => {
+  $(".card").show();
+  $("#openCanvas").hide();
 });
