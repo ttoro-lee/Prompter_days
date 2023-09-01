@@ -49,9 +49,33 @@ def index(request):
     return render(request, 'setting_persona/setting.html', {'form': form})
 
 
+# def get_friend_image(request):
+#     response = openai.Image.create(
+#         prompt="illustration of cute, dog wearing hat and angry. child style",
+#         # tag를 받아오면, GPT-4 -> 하나의 번역된 문장으로 만들어줘 -> 달리2 이미지 생성
+#         n=1,
+#         size="256x256"
+#     )
+#     image_url = response['data'][0]['url']
+
+#     response = requests.get(image_url)
+#     data_uri = 'data:image/jpeg;base64,' + base64.b64encode(response.content).decode('utf-8')
+
+#     # data_uri = '<img src="data:image/png;base64,' + data_uri + '"  alt="' + prompt + '" />'
+#     # 이미지 URL 반환
+#     return JsonResponse({"image_url": data_uri})
+
 def get_friend_image(request):
+    
+    # JavaScript에서 전달한 데이터 받기
+    data = json.loads(request.body)
+    name = data.get('name')
+    clothes = data.get('clothes')
+    emotion = data.get('emotion')
+
     response = openai.Image.create(
-        prompt="illustration of cute, dog wearing hat and angry. child style",
+
+        prompt = f"illustration of cute,  {name} wearing {clothes} and {emotion}. child style.",
         # tag를 받아오면, GPT-4 -> 하나의 번역된 문장으로 만들어줘 -> 달리2 이미지 생성
         n=1,
         size="256x256"
@@ -76,3 +100,4 @@ def get_sensitive_data(request):
     }
     
     return JsonResponse(response_data)
+

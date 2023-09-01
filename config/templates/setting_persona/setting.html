@@ -213,12 +213,12 @@
                         <input type="text" name="character_name" class="form-control form-control-lg" required="" id="id_character_name">
                       </div>
                       <div class="mt-2 mb-3">
-                        <label for="id_character_name" class="form-label">어떤 옷을 입고 있나요?</label>
-                        <input type="text" name="character_name" class="form-control form-control-lg" required="" id="id_character_name">
+                        <label for="id_character_clothes" class="form-label">어떤 옷을 입고 있나요?</label>
+                        <input type="text" name="character_name" class="form-control form-control-lg" required="" id="id_character_clothes">
                       </div>
                       <div class="mt-2 mb-3">
-                        <label for="id_character_name" class="form-label">기분이 어땠으면 좋겠나요?</label>
-                        <input type="text" name="character_name" class="form-control form-control-lg" required="" id="id_character_name">
+                        <label for="id_character_emotion" class="form-label">기분이 어땠으면 좋겠나요?</label>
+                        <input type="text" name="character_name" class="form-control form-control-lg" required="" id="id_character_emotion">
                       </div>
                       <h2 class="card-header">친구를 그려주세요!</h2>
                       <canvas id="characterCanvas"></canvas>
@@ -314,7 +314,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
     <script src="{% static 'js/setting_persona_draw.js' %}"></script>
-    <script>
+    <!-- <script>
       document.getElementById("createButton").addEventListener("click", function() {
         // 버튼 클릭 시 호출할 함수
         createFriend();
@@ -338,6 +338,62 @@
           })
           .catch(error => console.error(error));
       };
+    </script> -->
+
+    <script>
+      document.getElementById("createButton").addEventListener("click", function() {
+        const name = document.getElementById("id_character_name").value;
+        const clothes = document.getElementById("id_character_clothes").value;
+        const emotion = document.getElementById("id_character_emotion").value;
+        createFriend(name, clothes, emotion);
+      });
+
+      function createFriend(name, clothes, emotion) {
+        const requestData = {
+          name: name,
+          clothes: clothes,
+          emotion: emotion,
+        };
+
+        fetch("{% url 'setting_persona:get_friend_image' %}", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken"),
+          },
+          body: JSON.stringify(requestData),
+        })
+          .then(response => response.json())
+          .then(data => {
+            const imageUrl = data.image_url;
+            const image = new Image();
+            image.crossOrigin = "anonymous";
+            image.onload = function() {
+              const canvas = document.getElementById("characterCanvas");
+              const context = canvas.getContext("2d");
+              canvas.width = image.width;
+              canvas.height = image.height;
+              context.drawImage(image, 0, 0);
+            };
+            image.src = imageUrl;
+          })
+          .catch(error => console.error(error));
+      }
+
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          const cookies = document.cookie.split(";");
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
     </script>
   </body>
 </html>
