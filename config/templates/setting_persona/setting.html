@@ -342,6 +342,10 @@
 
     <script>
       document.getElementById("createButton").addEventListener("click", function() {
+
+        this.disabled = true;
+
+
         const name = document.getElementById("id_character_name").value;
         const clothes = document.getElementById("id_character_clothes").value;
         const emotion = document.getElementById("id_character_emotion").value;
@@ -374,10 +378,17 @@
               canvas.width = image.width;
               canvas.height = image.height;
               context.drawImage(image, 0, 0);
+
+              document.getElementById("createButton").disabled = false;
             };
             image.src = imageUrl;
           })
           .catch(error => console.error(error));
+
+          console.error(error);
+
+          // 요청이 실패한 경우에도 버튼 다시 활성화
+          document.getElementById("createButton").disabled = false;
       }
 
       function getCookie(name) {

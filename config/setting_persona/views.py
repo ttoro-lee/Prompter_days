@@ -73,9 +73,21 @@ def get_friend_image(request):
     clothes = data.get('clothes')
     emotion = data.get('emotion')
 
+    input_text = f"귀여운 일러스트,  {name}가 {clothes}를 입고 있고 {emotion}한 표정, 어린이 그림체, 고퀄리티"
+    response = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant that translates text."},
+        {"role": "user", "content": input_text},
+    ]
+    )
+
+    translated_text = response['choices'][0]['message']['content']
+    print("번역 결과:", translated_text)
+
     response = openai.Image.create(
 
-        prompt = f"illustration of cute,  {name} wearing {clothes} and {emotion}. child style.",
+        prompt = translated_text,
         # tag를 받아오면, GPT-4 -> 하나의 번역된 문장으로 만들어줘 -> 달리2 이미지 생성
         n=1,
         size="256x256"
