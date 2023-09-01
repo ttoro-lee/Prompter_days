@@ -236,7 +236,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="card mb-4">
-                    <form method="post">
+                    <form id="myForm" method="post">
                       {% csrf_token %} {{ form.non_field_errors }}
 
                       <div class="card-body">
@@ -287,6 +287,21 @@
     <script src="{% static 'assets/js/main.js' %}"></script>
 
     <!-- Page JS -->
+    <script>
+      const canvas = document.getElementById('characterCanvas');
+      const canvasImageInput = document.getElementById('id_canvas_image');
+      const saveButton = document.getElementById('save-button');
+      
+      // 캔버스에 그림을 그리는 로직을 추가 (canvas에 이미지를 그리는 등)
+      
+      saveButton.addEventListener('click', function() {
+          // 이미지 데이터를 input 필드에 설정
+          canvasImageInput.value = canvas.toDataURL();
+          
+          // 폼 제출
+          document.getElementById('myForm').submit();
+      });
+    </script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -304,6 +319,7 @@
           .then(data => {
             const imageUrl = data.image_url;
             const image = new Image();
+            image.crossOrigin = "anonymous";
             image.onload = function() {
               const canvas = document.getElementById("characterCanvas");
               const context = canvas.getContext("2d");

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .forms import FriendForm
 import openai
-import os, json
+import os, json, requests, base64
 from pathlib import Path
 from django.conf import settings
 from django.contrib import messages
@@ -14,31 +14,33 @@ OPENAI_KEY = get_secret("OPENAI_KEY")
 openai.api_key = OPENAI_KEY
 
 def index(request):
-    # response = openai.Image.create(
-    #     prompt="A Shiba Inu dog wearing a beret and black turtleneck",
-    #     n=1,
-    #     size="256x256"
-    # )
-    # image_url = response['data'][0]['url']
-    # print(image_url)
 
     if request.method == 'POST':
         form = FriendForm(request.POST)
         if form.is_valid():
+            canvas_image_data = form.cleaned_data['canvas_image']  # 이미지 데이터 가져오기
+            
+            
+            # 이미지 처리 로직 (예: 이미지 저장 등)
+            
+            # 다른 form 데이터 처리
             name = form.cleaned_data['character_name']
             age = form.cleaned_data['age']
             gender = form.cleaned_data['gender']
             likes = form.cleaned_data['likes']
             dislikes = form.cleaned_data['dislikes']
-
+            
+            # 새로운 HTML 페이지 렌더링
             context = {
                 'name': name,
                 'age': age,
                 'gender': gender,
-                'likes' : likes,
+                'likes': likes,
                 'dislikes': dislikes,
+                'canvas_image_data': canvas_image_data,  # 이미지 데이터를 context에 추가
+                # 필요한 다른 데이터를 context에 추가
             }
-            return render(request,'setting_persona/chat.html', context)
+            return render(request, 'setting_persona/chat.html', context)
         else:
             messages.info(request, '입력된 내용이 없습니다.')
             return redirect('setting_persona:setting_persona')
@@ -46,9 +48,6 @@ def index(request):
         form = FriendForm()
     return render(request, 'setting_persona/setting.html', {'form': form})
 
-
-def chatting(request):
-    return render(request, 'setting_persona/chat.html')
 
 def get_friend_image(request):
     response = openai.Image.create(
@@ -58,7 +57,22 @@ def get_friend_image(request):
         size="256x256"
     )
     image_url = response['data'][0]['url']
-    print(image_url)
 
+    response = requests.get(image_url)
+    data_uri = 'data:image/jpeg;base64,' + base64.b64encode(response.content).decode('utf-8')
+
+    # data_uri = '<img src="data:image/png;base64,' + data_uri + '"  alt="' + prompt + '" />'
     # 이미지 URL 반환
-    return JsonResponse({"image_url": image_url})
+    return JsonResponse({"image_url": data_uri})
+
+def get_sensitive_data(request):
+    # secrets.json 파일 읽어오기
+    with open('secrets.json') as f:
+        secrets = json.load(f)
+    
+    # 클라이언트에게 민감한 정보 전달
+    response_data = {
+        'api_key': secrets['OPENAI_KEY'],
+    }
+    
+    return JsonResponse(response_data)

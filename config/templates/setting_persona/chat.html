@@ -74,6 +74,14 @@
 
     <!-- Page CSS -->
     <link rel="stylesheet" href="{% static 'css/friend/chat.css' %}" />
+    <style>
+      .profile-image {
+          width: 50px; /* 이미지 너비 설정 */
+          height: 50px; /* 이미지 높이 설정 */
+          border-radius: 50%; /* 원형 모양으로 이미지 보이기 */
+          margin-right: 10px; /* 이미지와 텍스트 사이 간격 설정 */
+      }
+  </style>
 
     <!-- Helpers -->
     <script src="{% static 'assets/vendor/js/helpers.js' %}"></script>
@@ -238,6 +246,8 @@
                 <p class="info">성별 : {{ gender }}</p>
                 <p class="info">좋아하는 것 : {{ likes }}</p>
                 <p class="info">싫어하는 것 : {{ dislikes }}</p>
+                <div class="bs-toast toast ai-message show bg-primary">
+                  <img src="{{ canvas_image_data }}" alt="프로필 이미지" class="profile-image" id="ai_chat">챗봇: 안녕하세요! 무엇을 도와드릴까요?</div>
               </div>
               <div id="user-input">
                 <input
