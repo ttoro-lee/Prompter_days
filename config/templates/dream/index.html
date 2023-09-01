@@ -4,24 +4,44 @@
   <head>
     <title>드림랜드</title>
     <link rel="stylesheet" href="{% static 'css/dream/index.css' %}" />
+    <!-- Favicon -->
+    <link
+    rel="icon"
+    type="image/x-icon"
+    href="{% static 'css/dream/shining.png' %}"
+    />
   </head>
   <body>
-    <h1 style="text-align: center">드림랜드</h1>
-    <div style="text-align: center">
-      <button
-        onclick="location.href='{% url 'story:story' %}'"
-        style="font-size: 16px; padding: 10px 20px"
-      >
-        이야기 만들기
-      </button>
-      <span style="margin: 0 10px"></span>
-      <!-- 간격을 나타내는 빈 요소 추가 -->
-      <button
-        onclick="location.href='{% url 'setting_persona:setting_persona' %}'"
-        style="font-size: 16px; padding: 10px 20px"
-      >
-        친구 만들기
-      </button>
+    <div id="background-wrap">
+      <div class="x1">
+        <div class="cloud"></div>
+      </div>
+
+      <div class="x2">
+        <div class="cloud"></div>
+      </div>
+
+      <div class="x3">
+        <div class="cloud"></div>
+      </div>
+
+      <div class="x4">
+        <div class="cloud"></div>
+      </div>
+
+      <div class="x5">
+        <div class="cloud"></div>
+      </div>
     </div>
+    <span>드림랜드</span>
+    <button id="storyButton" onclick="location.href='{% url 'story:story' %}'">
+      <img src='{% static 'css/dream/story.png' %}'></img>이야기 만들기
+    </button>
+    <button
+      id="friendButton"
+      onclick="location.href='{% url 'setting_persona:setting_persona' %}'"
+    >
+      <img src='{% static 'css/dream/friends.png' %}'></img>친구와 대화하기
+    </button>
   </body>
 </html>
