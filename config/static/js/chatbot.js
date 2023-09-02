@@ -96,16 +96,36 @@ async function fetchAIResponse(prompt) {
         {
           role: "system", // 메시지 역할을 system로 설정
           content:
-            "Answer kindly and simply, as if you were talking to a child, user name is not" +
+            "I want you to act as my friend. I will tell you what is happening in my life and you will reply with something helpful and supportive." +
+            " Do not write long explanations, just reply with the bright, cheerful words. Please help me stay positive and bright. You are child. " +
+            " Your name is " +
             name +
-            "and " +
+            ". Your age is " +
             age +
-            " " +
+            ". Your gender is " +
             gender +
-            " " +
+            ". You like " +
             likes +
-            " " +
-            dislikes, // 사용자가 입력한 메시지
+            ". you dislike " +
+            dislikes +
+            ". My name is " +
+            user_name +
+            ". My age is " +
+            user_age +
+            ". My gender is " +
+            user_gender +
+            ". I am child.", // 사용자가 입력한 메시지
+          // content:
+          //   "Answer kindly and simply, as if you were talking to a child, user name is not" +
+          //   name +
+          //   "and " +
+          //   age +
+          //   " " +
+          //   gender +
+          //   " " +
+          //   likes +
+          //   " " +
+          //   dislikes, // 사용자가 입력한 메시지
         },
         {
           role: "user",
