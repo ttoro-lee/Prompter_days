@@ -78,6 +78,9 @@ body {
   margin-top: 16px;
   flex: 3;
 }
+.form-control {
+  margin: 5px; /* 원하는 margin 값을 지정하세요 */
+}
 #canvasButton textarea {
   font-size: 1rem;
 }

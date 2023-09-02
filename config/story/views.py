@@ -42,6 +42,7 @@ def index(request):
             
             # 다른 form 데이터 처리
             plus_text = form.cleaned_data['plus_text']
+            print(plus_text)
             
             # 새로운 HTML 페이지 렌더링
             context = {

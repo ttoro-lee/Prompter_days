@@ -97,7 +97,7 @@
                   </defs>
                   <g
                     id="g-app-brand"
-                    stroke="none"
+                    stroke="none" 
                     stroke-width="1"
                     fill="none"
                     fill-rule="evenodd"
@@ -268,7 +268,7 @@
                   </div>
                   <div class="row gy-3">
                     <div class="col-md" id="canvas">
-                      <canvas
+                      <canvas class="form-control"
                         id="drawingCanvas"
                         width="256"
                         height="256"
@@ -291,7 +291,7 @@
                         id="imageUpload formFile"
                         accept="image/*"
                       />
-                      <form id="myForm" method="post">
+                      <form class="form-control" id="myForm" method="post">
                         {% csrf_token %} {{ form.non_field_errors }}
                         {% for field in form %}
                           {{ field }}

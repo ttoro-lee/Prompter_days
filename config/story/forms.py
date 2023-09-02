@@ -9,6 +9,7 @@ class StoryForm(forms.ModelForm):
             'placeholder': '내용을 입력하세요',
             'aria-label': 'Search...',
             'id' : "textUpload",
+            'type': 'text',
         })
     )
 

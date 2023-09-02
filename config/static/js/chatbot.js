@@ -89,7 +89,7 @@ async function fetchAIResponse(prompt) {
       model: "gpt-4", // 사용할 AI 모델
       messages: [
         {
-          role: "system", // 메시지 역할을 user로 설정
+          role: "system", // 메시지 역할을 system로 설정
           content: "Answer kindly and simply, as if you were talking to a child, user name is not" + name + "and " + age + " " + gender + " " + likes + " " + dislikes, // 사용자가 입력한 메시지
         },
         {
