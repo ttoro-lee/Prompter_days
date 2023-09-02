@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from .forms import FriendForm
+from .forms import FriendForm, UserForm
 import openai
 import os, json, requests, base64
 from pathlib import Path
@@ -17,7 +17,11 @@ def index(request):
 
     if request.method == 'POST':
         form = FriendForm(request.POST)
-        if form.is_valid():
+        
+        # 사용자
+        user_form = UserForm(request.POST)
+        
+        if form.is_valid() and user_form.is_valid():
             canvas_image_data = form.cleaned_data['canvas_image']  # 이미지 데이터 가져오기
             
             
@@ -30,6 +34,11 @@ def index(request):
             likes = form.cleaned_data['likes']
             dislikes = form.cleaned_data['dislikes']
             
+            # 사용자 form 데이터 처리
+            user_name = user_form.cleaned_data['user_name']
+            user_age = user_form.cleaned_data['user_age']
+            user_gender = user_form.cleaned_data['user_gender']
+            
             # 새로운 HTML 페이지 렌더링
             context = {
                 'name': name,
@@ -38,6 +47,10 @@ def index(request):
                 'likes': likes,
                 'dislikes': dislikes,
                 'canvas_image_data': canvas_image_data,  # 이미지 데이터를 context에 추가
+                
+                'user_name' : user_name,
+                'user_age' : user_age,
+                'user_gender' : user_gender,
                 # 필요한 다른 데이터를 context에 추가
             }
             return render(request, 'setting_persona/chat.html', context)
@@ -47,7 +60,8 @@ def index(request):
             #return redirect('setting_persona:setting_persona')
     else:
         form = FriendForm()
-    return render(request, 'setting_persona/setting.html', {'form': form})
+        user_form = UserForm()
+    return render(request, 'setting_persona/setting.html', {'form': form, 'user_form' : user_form})
 
 
 # def get_friend_image(request):
