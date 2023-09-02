@@ -41,9 +41,9 @@ SECRET_KEY = get_secret("SECRET_KEY")
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.path.join(BASE_DIR, 'google_vision_api.json')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ttoro.pythonanywhere.com', "127.0.0.1", 'localhost']
 
 
 # Application definition

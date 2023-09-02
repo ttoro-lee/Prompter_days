@@ -208,6 +208,11 @@
                 </a>
               </div>
               <div id="chat-messages">
+                <div id="loading">
+                  <div class="spinner-border spinner-border-lg text-secondary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
                 <div class="card-body">
                     <div class="row gy-3">
                         <div class="col-md">
@@ -346,15 +351,16 @@
       const canvas = document.getElementById('drawingCanvas');
       const canvasImageInput = document.getElementById('id_canvas_image');
       const saveButton = document.getElementById('storyButton');
+      const loadingDiv = document.getElementById('loading');
       
       // 캔버스에 그림을 그리는 로직을 추가 (canvas에 이미지를 그리는 등)
       
       saveButton.addEventListener('click', function() {
-          // 이미지 데이터를 input 필드에 설정
-          canvasImageInput.value = canvas.toDataURL();
-          
-          // 폼 제출
-          document.getElementById('myForm').submit();
+        $("#loading").css("display", "flex");
+        $("#chat-messages").css("overflow-x", "hidden");
+        canvasImageInput.value = canvas.toDataURL();
+        // 폼 제출
+        document.getElementById('myForm').submit();
       });
     </script>
 

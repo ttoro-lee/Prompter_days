@@ -79,7 +79,7 @@ def get_friend_image(request):
     model="gpt-3.5-turbo",
     messages=[
         {"role": "system", "content": "You are a helpful assistant that translates text."},
-        {"role": "user", "content": input_text},
+        {"role": "user", "content": f"Translate {input_text} into only English"},
     ]
     )
 
@@ -103,13 +103,12 @@ def get_friend_image(request):
     return JsonResponse({"image_url": data_uri})
 
 def get_sensitive_data(request):
-    # secrets.json 파일 읽어오기
-    with open('secrets.json') as f:
-        secrets = json.load(f)
+
+    SECRET_KEY = get_secret("OPENAI_KEY")
     
     # 클라이언트에게 민감한 정보 전달
     response_data = {
-        'api_key': secrets['OPENAI_KEY'],
+        'api_key': SECRET_KEY,
     }
     
     return JsonResponse(response_data)
