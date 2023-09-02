@@ -206,7 +206,13 @@
                   <i class="bx bx-menu bx-sm"></i>
                 </a>
               </div>
-              <div id="chat-messages"></div>
+              <div id="chat-messages">
+                <div id="loading">
+                  <div class="spinner-border spinner-border-lg text-secondary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              </div>
               <button
                 type="button"
                 class="btn btn-icon btn-primary"
@@ -292,6 +298,8 @@
       
       saveButton.addEventListener('click', function() {
           // 이미지 데이터를 input 필드에 설정
+          $("#loading").css("display", "flex");
+          $("#chat-messages").css("overflow-x", "hidden");
           canvasImageInput.value = canvas.toDataURL();
           
           // 폼 제출

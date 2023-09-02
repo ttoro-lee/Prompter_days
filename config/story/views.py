@@ -46,7 +46,7 @@ def index(request):
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": "You are a skilled English translator."},
-                    {"role": "user", "content": f"Translate {plus_text} into English"},
+                    {"role": "user", "content": f"Translate {plus_text} into English."},
                 ]
             )
 
@@ -59,8 +59,8 @@ def index(request):
             response = openai.ChatCompletion.create(
                 model="gpt-4",
                 messages=[
-                    {"role": "system", "content": "You are a skilled Korean fairy tale writer. Write it naturally within ten sentences."},
-                    {"role": "user", "content": f"Write a children's fairy tale based on {fairytale} in Korean"},
+                    {"role": "system", "content": "You are a skilled Korean fairy tale writer."},
+                    {"role": "user", "content": f"Write a children's fairy tale based on {fairytale} in only Korean. Write it naturally within ten sentences."},
                 ]
             )
 

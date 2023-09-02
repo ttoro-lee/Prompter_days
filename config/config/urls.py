@@ -17,11 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from dream import views
-
+from django.views.static import serve
+from django.urls import re_path as url
+from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.index, name='index'), # '/' 에 해당되는 path
     path('story/', include("story.urls")),
     path('setting_persona/', include("setting_persona.urls")),
+    url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 ]
