@@ -6,6 +6,7 @@ class FriendForm(forms.ModelForm):
     character_name = forms.CharField(
         label="친구의 이름",
         widget=forms.TextInput(attrs={"class": "form-control form-control-lg"}),
+        required=True
     )
     age = forms.ChoiceField(
         label="나이",
@@ -20,10 +21,12 @@ class FriendForm(forms.ModelForm):
     likes = forms.CharField(
         label="좋아하는 것",
         widget=forms.TextInput(attrs={"class": "form-control form-control-lg"}),
+        required=True
     )
     dislikes = forms.CharField(
         label="싫어하는 것",
         widget=forms.TextInput(attrs={"class": "form-control form-control-lg"}),
+        required=True
     )
 
     class Meta:

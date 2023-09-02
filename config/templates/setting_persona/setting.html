@@ -204,8 +204,15 @@
                 </a>
               </div>
               <div class="row">
-                <div class="col-md-6">
-                  <div class="card mb-4">
+
+                <!-- 1번째 단계 -->
+                <div class="col-md-6" id="first-step">
+                  <div class="card mb-4" style="position:relative">
+                    <div id="loading">
+                      <div class="spinner-border spinner-border-lg text-secondary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
                     <div class="card-body">
                       <div class="mt-2 mb-3">
                         <h2 class="card-header">어떤 친구를 만들고 싶나요?</h2>
@@ -220,7 +227,20 @@
                         <label for="id_character_emotion" class="form-label">기분이 어땠으면 좋겠나요?</label>
                         <input type="text" name="character_name" class="form-control form-control-lg" required="" id="id_character_emotion">
                       </div>
-                      <h2 class="card-header">친구를 그려주세요!</h2>
+                      <div id="createButtonContainer">
+                        <button class="btn btn-success" id="createButton">
+                          친구 만들기
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 2번째 단계 -->
+                <div class="col-md-6" id="second-step">
+                  <div class="card mb-4">
+                    <div class="card-body">
+                      <h2 class="card-header">친구를 꾸며주세요!</h2>
                       <canvas id="characterCanvas"></canvas>
                       <div id="colorPickerContainer">
                         <label for="colorPicker">색 선택:</label> &nbsp;&nbsp;
@@ -233,40 +253,48 @@
                         <button class="btn btn-primary" id="clearButton">
                           그림 지우기
                         </button>
+                        <div style="flex:1"></div>
+                        <button class="btn btn-success" id="resetButton">
+                          다시 만들기
+                        </button>
                         &nbsp;&nbsp;
-                        <button class="btn btn-success" id="createButton">
-                          친구 만들기
+                        <button class="btn btn-danger" id="nextButton">
+                          다음 단계
                         </button>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6">
+
+                <!-- 3번째 단계 -->
+                <div class="col-md-6" id="third-step">
                   <div class="card mb-4">
-                    <form id="myForm" method="post">
-                      {% csrf_token %} {{ form.non_field_errors }}
+                    <div class="card-body">
 
-                      <div class="card-body">
-                        {% for field in form %}
-                        <div class="mt-2 mb-3">
-                          <label
-                            for="{{ field.id_for_label }}"
-                            class="form-label"
-                            >{{ field.label }}</label
-                          >
-                          {{ field }}
-                        </div>
-                        {% endfor %}
-
-                        <div id="save-button">
-                          <button type="submit" class="btn btn-success">
-                            저장
-                          </button>
-                        </div>
-                      </div>
-                    </form>
+                      <form id="myForm" method="post">
+                        {% csrf_token %} {{ form.non_field_errors }}
+                          {% for field in form %}
+                          <div class="mt-2 mb-3">
+                            <label
+                              for="{{ field.id_for_label }}"
+                              class="form-label"
+                              >{{ field.label }}</label
+                            >
+                            {{ field }}
+                          </div>
+                          {% endfor %}
+                          <img id="character">
+                          <div id="third-step-button-container">
+                            <button type="submit" class="btn btn-danger" id="save-button">
+                              저장
+                            </button>
+                          </div>
+                      </form>
+              
+                    </div>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
@@ -294,57 +322,12 @@
     <script src="{% static 'assets/js/main.js' %}"></script>
 
     <!-- Page JS -->
-    <script>
-      const canvas = document.getElementById('characterCanvas');
-      const canvasImageInput = document.getElementById('id_canvas_image');
-      const saveButton = document.getElementById('save-button');
-      
-      // 캔버스에 그림을 그리는 로직을 추가 (canvas에 이미지를 그리는 등)
-      
-      saveButton.addEventListener('click', function() {
-          // 이미지 데이터를 input 필드에 설정
-          canvasImageInput.value = canvas.toDataURL();
-          
-          // 폼 제출
-          document.getElementById('myForm').submit();
-      });
-    </script>
-
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-
     <script src="{% static 'js/setting_persona_draw.js' %}"></script>
-    <!-- <script>
-      document.getElementById("createButton").addEventListener("click", function() {
-        // 버튼 클릭 시 호출할 함수
-        createFriend();
-      });
-
-      function createFriend() {
-        fetch("{% url 'setting_persona:get_friend_image' %}")  // Django 뷰의 URL로 변경해야 함
-          .then(response => response.json())
-          .then(data => {
-            const imageUrl = data.image_url;
-            const image = new Image();
-            image.crossOrigin = "anonymous";
-            image.onload = function() {
-              const canvas = document.getElementById("characterCanvas");
-              const context = canvas.getContext("2d");
-              canvas.width = image.width;
-              canvas.height = image.height;
-              context.drawImage(image, 0, 0);
-            };
-            image.src = imageUrl;
-          })
-          .catch(error => console.error(error));
-      };
-    </script> -->
-
     <script>
-      document.getElementById("createButton").addEventListener("click", function() {
-
+      // 첫번째 페르소나 이미지 생성 단계
+      document.getElementById("createButton").addEventListener("click", function () {
+        $("#loading").css("display", "flex");
         this.disabled = true;
-
 
         const name = document.getElementById("id_character_name").value;
         const clothes = document.getElementById("id_character_clothes").value;
@@ -367,12 +350,12 @@
           },
           body: JSON.stringify(requestData),
         })
-          .then(response => response.json())
-          .then(data => {
+          .then((response) => response.json())
+          .then((data) => {
             const imageUrl = data.image_url;
             const image = new Image();
             image.crossOrigin = "anonymous";
-            image.onload = function() {
+            image.onload = function () {
               const canvas = document.getElementById("characterCanvas");
               const context = canvas.getContext("2d");
               canvas.width = image.width;
@@ -382,13 +365,16 @@
               document.getElementById("createButton").disabled = false;
             };
             image.src = imageUrl;
+            $("#loading").hide();
+            $("#first-step").hide();
+            $("#second-step").show();
           })
-          .catch(error => console.error(error));
+          .catch((error) => console.error(error));
 
-          console.error(error);
+        console.error(error);
 
-          // 요청이 실패한 경우에도 버튼 다시 활성화
-          document.getElementById("createButton").disabled = false;
+        // 요청이 실패한 경우에도 버튼 다시 활성화
+        document.getElementById("createButton").disabled = false;
       }
 
       function getCookie(name) {
@@ -405,6 +391,47 @@
         }
         return cookieValue;
       }
+
+      // 두번째 단계
+      const resetButton = document.getElementById("resetButton");
+      const nextButton = document.getElementById("nextButton");
+      const character = document.getElementById("character");
+
+      resetButton.addEventListener("click", function () {
+        // 다시 만들기 클릭하면 첫번째로 이동
+        $("#second-step").hide();
+        $("#first-step").show();
+      });
+      nextButton.addEventListener("click", function () {
+        // 다음단계 클릭하면 세번째로 이동
+        $("#second-step").hide();
+        $("#third-step").show();
+
+        // 캔버스 이미지 복사
+        character.src = canvas.toDataURL();
+      });
+
+      // 세번째 단계
+      const canvas = document.getElementById("characterCanvas");
+      const canvasImageInput = document.getElementById("id_canvas_image");
+      const saveButton = document.getElementById("save-button");
+      const form = document.getElementById("myForm");
+
+      // 캔버스에 그림을 그리는 로직을 추가 (canvas에 이미지를 그리는 등)
+
+      saveButton.addEventListener("click", function () {
+        // 이미지 데이터를 input 필드에 설정
+        canvasImageInput.value = canvas.toDataURL();
+
+        // 폼 제출
+        if (form.checkValidity()) {
+          document.getElementById("myForm").submit();
+        }
+      });
+
     </script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </body>
 </html>

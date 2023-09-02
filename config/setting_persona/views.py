@@ -43,7 +43,8 @@ def index(request):
             return render(request, 'setting_persona/chat.html', context)
         else:
             messages.info(request, '입력된 내용이 없습니다.')
-            return redirect('setting_persona:setting_persona')
+            #return render(request, 'setting_persona/setting.html', {'form' : form})
+            #return redirect('setting_persona:setting_persona')
     else:
         form = FriendForm()
     return render(request, 'setting_persona/setting.html', {'form': form})
