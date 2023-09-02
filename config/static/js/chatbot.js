@@ -9,17 +9,17 @@ const sendButton = document.querySelector("#user-input button");
 let apiKey;
 
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("/setting_persona/get_sensitive_data/")  // 서버의 API 엔드포인트로 요청 보내기
-      .then(response => response.json())  // JSON 응답 파싱
-      .then(data => {
-          // 받아온 데이터에서 api_key 값을 변수에 저장
-          apiKey = data.api_key;
+  fetch("/setting_persona/get_sensitive_data/") // 서버의 API 엔드포인트로 요청 보내기
+    .then((response) => response.json()) // JSON 응답 파싱
+    .then((data) => {
+      // 받아온 데이터에서 api_key 값을 변수에 저장
+      apiKey = data.api_key;
 
-          // apiKey 값을 페이지의 특정 요소에 표시
-      })
-      .catch(error => {
-          console.error("Error fetching API key:", error);
-      });
+      // apiKey 값을 페이지의 특정 요소에 표시
+    })
+    .catch((error) => {
+      console.error("Error fetching API key:", error);
+    });
 });
 // const secrets = require('../../secrets.json');
 // const apiKey = secrets.OPENAI_KEY;
@@ -37,45 +37,50 @@ function addMessage(sender, message) {
   } else {
     messageElement.className = "bs-toast toast ai-message show bg-primary";
     // 채팅 메시지 목록에 새로운 메시지 추가
-    const otherImage = document.getElementById('ai_chat'); // 예시: ID를 사용한 선택
+    const otherImage = document.getElementById("ai_chat"); // 예시: ID를 사용한 선택
 
     if (otherImage) {
-        // 이미지 엘리먼트가 존재하는 경우
-        const otherImageUrl = otherImage.src; // 이미지 엘리먼트의 src 속성 값을 가져옵니다.
-        
-        const imageElement = document.createElement("img");
-        imageElement.src = otherImageUrl; // 이미지 데이터 URL 설정
-        imageElement.alt = "프로필 이미지";
-        imageElement.className = "profile-image";
-        imageElement.id = "ai_chat";
-        messageElement.appendChild(imageElement);
-        const textElement = document.createElement('span')
-        textElement.textContent = `${sender}: ${message}`
-        messageElement.appendChild(textElement)
-        chatMessages.prepend(messageElement);
+      // 이미지 엘리먼트가 존재하는 경우
+      const otherImageUrl = otherImage.src; // 이미지 엘리먼트의 src 속성 값을 가져옵니다.
+
+      const imageElement = document.createElement("img");
+      imageElement.src = otherImageUrl; // 이미지 데이터 URL 설정
+      imageElement.alt = "프로필 이미지";
+      imageElement.className = "profile-image";
+      imageElement.id = "ai_chat";
+      messageElement.appendChild(imageElement);
+      const textElement = document.createElement("span");
+      textElement.textContent = `${sender}: ${message}`;
+      messageElement.appendChild(textElement);
+      chatMessages.prepend(messageElement);
     } else {
-        console.log('이미지를 찾을 수 없습니다.');
-        const imageElement = document.createElement("img");
-        imageElement.src = null; // 이미지 데이터 URL 설정
-        imageElement.alt = "프로필 이미지";
-        imageElement.className = "profile-image";
-        imageElement.id = "ai_chat";
-        messageElement.appendChild(imageElement);
-        const textElement = document.createElement('span')
-        textElement.textContent = `${sender}: ${message}`
-        messageElement.appendChild(textElement)
-        chatMessages.prepend(messageElement);
+      console.log("이미지를 찾을 수 없습니다.");
+      const imageElement = document.createElement("img");
+      imageElement.src = null; // 이미지 데이터 URL 설정
+      imageElement.alt = "프로필 이미지";
+      imageElement.className = "profile-image";
+      imageElement.id = "ai_chat";
+      messageElement.appendChild(imageElement);
+      const textElement = document.createElement("span");
+      textElement.textContent = `${sender}: ${message}`;
+      messageElement.appendChild(textElement);
+      chatMessages.prepend(messageElement);
     }
   }
 }
 // ChatGPT API 요청
 async function fetchAIResponse(prompt) {
-  const name = document.getElementById('name').textContent;
-  const age = document.getElementById('age').textContent;
-  const gender = document.getElementById('gender').textContent;
-  const likes = document.getElementById('likes').textContent;
-  const dislikes = document.getElementById('dislikes').textContent;
+  const name = document.getElementById("name").textContent;
+  const age = document.getElementById("age").textContent;
+  const gender = document.getElementById("gender").textContent;
+  const likes = document.getElementById("likes").textContent;
+  const dislikes = document.getElementById("dislikes").textContent;
   console.log(name, age, gender, likes, dislikes);
+
+  const user_name = document.getElementById("user_name").textContent;
+  const user_age = document.getElementById("user_age").textContent;
+  const user_gender = document.getElementById("user_gender").textContent;
+  console.log(user_name, user_age, user_gender);
 
   // API 요청에 사용할 옵션을 정의
   const requestOptions = {
@@ -90,12 +95,22 @@ async function fetchAIResponse(prompt) {
       messages: [
         {
           role: "system", // 메시지 역할을 system로 설정
-          content: "Answer kindly and simply, as if you were talking to a child, user name is not" + name + "and " + age + " " + gender + " " + likes + " " + dislikes, // 사용자가 입력한 메시지
+          content:
+            "Answer kindly and simply, as if you were talking to a child, user name is not" +
+            name +
+            "and " +
+            age +
+            " " +
+            gender +
+            " " +
+            likes +
+            " " +
+            dislikes, // 사용자가 입력한 메시지
         },
         {
-          role : 'user',
+          role: "user",
           content: prompt,
-        }
+        },
       ],
       temperature: 0.8, // 모델의 출력 다양성
       max_tokens: 1024, // 응답받을 메시지 최대 토큰(단어) 수 설정
