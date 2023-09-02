@@ -285,18 +285,21 @@
                           </div>
                           {% endfor %}
 
-                          <!-- 사용자 정보 -->
-                          {% csrf_token %} {{ user_form.non_field_errors }}
-                          {% for field in user_form %}
-                          <div class="mt-2 mb-3">
-                            <label
-                              for="{{ field.id_for_label }}"
-                              class="form-label"
-                              >{{ field.label }}</label
-                            >
-                            {{ field }}
-                          </div>
-                          {% endfor %}
+                           <!-- 사용자 정보 -->
+                          <form id="userForm" method="post">
+                            {% csrf_token %} {{ user_form.non_field_errors }}
+                            {% for field in user_form %}
+                            <div class="mt-2 mb-3">
+                              <label
+                                for="{{ field.id_for_label }}"
+                                class="form-label"
+                                >{{ field.label }}</label
+                              >
+                              {{ field }}
+                            </div>
+                            {% endfor %}
+                          </form>
+                          
                           <img id="character">
                           <div id="third-step-button-container">
                             <button type="submit" class="btn btn-danger" id="save-button">
