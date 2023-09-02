@@ -83,11 +83,12 @@ body {
 }
 #canvasButton textarea {
   font-size: 1rem;
-}
-#textUpload {
   flex: 1;
   margin: 10px 0px;
   resize: none;
+  width: auto;
+  height: auto;
+  rows: none;
 }
 #storyButton {
   margin-left: auto;
