@@ -85,9 +85,9 @@
     </tr>
     <tr>
       <td align="center">BE & Infra</td>
-      <td align="center">FE, BE</td>
-      <td align="center">BE</td>
-      <td align="center">기획</td>
+      <td align="center">FE & BE</td>
+      <td align="center">BE & Prompt</td>
+      <td align="center">기획 & Prompt</td>
     </tr>
   </tbody>
 </table>
