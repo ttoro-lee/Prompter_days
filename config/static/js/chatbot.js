@@ -131,6 +131,16 @@ async function fetchAIResponse(prompt) {
           role: "user",
           content: prompt,
         },
+        {
+          role: "system", // 메시지 역할을 system로 설정
+          content:
+          "I am a child counselor. When I receive a question from you, I will explain about myself as if I'm talking to a child." +
+            " Do not write long explanations, just reply with the bright, cheerful words. Please help me stay positive and bright. You are child. "
+        },
+        {
+          role: "user",
+          content: prompt,
+        },
       ],
       temperature: 0.8, // 모델의 출력 다양성
       max_tokens: 1024, // 응답받을 메시지 최대 토큰(단어) 수 설정
@@ -162,7 +172,9 @@ sendButton.addEventListener("click", async () => {
   userInput.value = "";
   //ChatGPT API 요청후 답변을 화면에 추가
   const aiResponse = await fetchAIResponse(message);
-  addMessage("챗봇", aiResponse);
+  const name = document.getElementById("name").textContent;
+  console.log(name);
+  addMessage(name, aiResponse);
 });
 // 사용자 입력 필드에서 Enter 키 이벤트를 처리
 userInput.addEventListener("keydown", (event) => {

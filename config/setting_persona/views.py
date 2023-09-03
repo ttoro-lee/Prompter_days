@@ -88,7 +88,7 @@ def get_friend_image(request):
     clothes = data.get('clothes')
     emotion = data.get('emotion')
 
-    input_text = f"귀여운 일러스트,  {name}가 {clothes}를 입고 있고 {emotion}한 표정, 어린이 그림체, 고퀄리티"
+    input_text = f"귀여운 일러스트,  {name}이/가 {clothes}를 입고 있고 {emotion}한 표정, 어린이 그림체, 고퀄리티"
     response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=[
