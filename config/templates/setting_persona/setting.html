@@ -203,6 +203,18 @@
                   <i class="bx bx-menu bx-sm"></i>
                 </a>
               </div>
+
+              <div class="bs-toast toast toast-placement-ex m-2 fade bg-secondary top-0 start-50 translate-middle-x hide" id="alert" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                  <i class="bx bx-bell me-2"></i>
+                  <div class="me-auto">입력 내용이 부족합니다 :(</div>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                  세 칸에 모두 내용을 입력해주세요!
+                </div>
+              </div>
+
               <div class="row">
 
                 <!-- 1번째 단계 -->
@@ -361,7 +373,19 @@
         const name = document.getElementById("id_character_name").value;
         const clothes = document.getElementById("id_character_clothes").value;
         const emotion = document.getElementById("id_character_emotion").value;
-        createFriend(name, clothes, emotion);
+
+        // name, clothes, emotion 중 하나라도 비어있으면 요청을 보내지 않음
+        if (name && clothes && emotion) {
+          createFriend(name, clothes, emotion);
+        } else {
+          // alert("모든 필드를 입력하세요.");
+          $("#loading").hide();
+          this.disabled = false;
+          document.getElementById("alert").classList.replace("hide", "show");
+          setTimeout(function() {
+            document.getElementById("alert").classList.replace("show", "hide");
+          }, 3000);
+        }
       });
 
       function createFriend(name, clothes, emotion) {

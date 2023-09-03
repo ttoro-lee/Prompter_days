@@ -6,7 +6,7 @@ class StoryForm(forms.ModelForm):
     plus_text = forms.CharField(
         widget=forms.Textarea(attrs={
             'class': 'form-control shadow-none',
-            'placeholder': '내용을 입력하세요',
+            'placeholder': '이야기에 넣고 싶은 추가 내용을 입력하세요',
             'aria-label': 'Search...',
             'id' : "textUpload",
             'type': 'text',

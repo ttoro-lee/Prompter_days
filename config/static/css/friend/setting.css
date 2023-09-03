@@ -20,6 +20,9 @@ body {
 }
 
 /* 1번째(캐릭터 외형 설명) */
+#alert {
+  font-size: 1.1rem;
+}
 #loading {
   display: none;
   width: 100%;

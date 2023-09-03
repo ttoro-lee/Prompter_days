@@ -24,7 +24,7 @@ body {
   flex: 1;
   position: relative; /* 상대적 포지셔닝을 추가합니다. */
 }
-/* 1번째(캐릭터 외형 설명) */
+
 #loading {
   display: none;
   width: 100%;
@@ -92,17 +92,18 @@ body {
   flex: 3;
 }
 .form-control {
-  margin: 5px; /* 원하는 margin 값을 지정하세요 */
+  margin: 5px 0px; /* 원하는 margin 값을 지정하세요 */
 }
 #canvasButton textarea {
   font-size: 1rem;
   flex: 1;
-  margin: 10px 0px;
   resize: none;
-  height: auto;
+  border: none;
+  margin: 0px;
 }
 #storyButton {
   margin-left: auto;
+  margin-top: 10px;
 }
 
 .toast {
