@@ -58,7 +58,7 @@
     <tr>
       <td align="center">
         <a href="https://github.com/ttoro-lee">
-          <img src="https://avatars.githubusercontent.com/u/85385027?v=4" width="100px;">  <br>
+          <img src="https://avatars.githubusercontent.com/u/80229922?v=4" width="100px;">  <br>
           <sub><b>이운문</b></sub>
         </a>
       </td>
@@ -70,13 +70,13 @@
       </td>
       <td align="center">
         <a href="https://github.com/EunchanJeong">
-          <img src="https://avatars.githubusercontent.com/u/77630266?v=4" width="100px;">  <br>
+          <img src="https://avatars.githubusercontent.com/u/89077219?v=4" width="100px;">  <br>
           <sub><b>정은찬</b></sub>
         </a>
       </td>
       <td align="center">
-        <a href="">
-          <img src=""><br>
+        <a href="#">
+          <img src="#"><br>
           <sub><b>배수빈</b></sub>
         </a>
       </td>
