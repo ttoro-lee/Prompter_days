@@ -1,4 +1,4 @@
-# DreamLand : 아이들의 애착인형
+<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=DreamLand Project&fontSize=90" />
 - Prompter days 프로젝트
 - 프로젝트 기간 : 2023.08.21 ~ 2023.09.03
 
