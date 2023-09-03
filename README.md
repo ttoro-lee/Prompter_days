@@ -77,8 +77,8 @@
         </a>
       </td>
       <td align="center">
-        <a href="#">
-          <img src="#"><br>
+        <a href="https://github.com/waterbean0143">
+          <img src="https://avatars.githubusercontent.com/u/102143428?v=4"><br>
           <sub><b>배수빈</b></sub>
         </a>
       </td>
