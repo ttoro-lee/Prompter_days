@@ -127,7 +127,6 @@
     <tr>
       <td align='center'><strong>인프라</strong></td>
       <td align='center'>
-        <img src="https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white">
         <img src="https://img.shields.io/badge/pythonanywhere-1D9FD7?style=for-the-badge&logo=pythonanywhere&logoColor=white"/>
       </td>
     </tr>
