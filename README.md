@@ -128,7 +128,7 @@
       <td align='center'><strong>인프라</strong></td>
       <td align='center'>
         <img src="https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white">
-        <img src="https://img.shields.io/badge/pythonanywhere-#1D9FD7?style=flat&logo=pythonanywhere&logoColor=white"/>
+        <img src="https://img.shields.io/badge/pythonanywhere-1D9FD7?style=flat&logo=pythonanywhere&logoColor=white"/>
       </td>
     </tr>
     <tr>
@@ -141,7 +141,7 @@
       <td align='center'><strong>협업</strong></td>
       <td align='center'>
         <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">
-        <img src="https://img.shields.io/badge/discord-#5865F2?style=for-the-badge&logo=discord&logoColor=white">
+        <img src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white">
         <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
       </td>
     </tr>
