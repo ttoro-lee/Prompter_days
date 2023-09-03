@@ -75,8 +75,8 @@
         </a>
       </td>
       <td align="center">
-        <a href="https://github.com/ayocado">
-          <img src="https://avatars.githubusercontent.com/u/89889583?v=4" width="100px;">  <br>
+        <a href="">
+          <img src="">  <br>
           <sub><b>배수빈</b></sub>
         </a>
       </td>
