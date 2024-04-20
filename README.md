@@ -7,9 +7,10 @@
 ## 📋 목차
 1. [서비스 소개](#-서비스-소개)
 2. [주요 서비스 기능](#-주요-서비스-기능)
-3. [파일 구조](#-파일-구조)
-4. [팀원 및 역할](#-팀원-및-역할)
-5. [기술 스택](#-기술-스택)
+3. [시연 영상](#-시연-영상)
+4. [파일 구조](#-파일-구조)
+5. [팀원 및 역할](#-팀원-및-역할)
+6. [기술 스택](#-기술-스택)
 <br>
 
 ## 💡 서비스 소개
@@ -36,6 +37,28 @@
 - 자신의 그림이나 사진을 업로드하여 동화를 생성할 수 있음
 - 업로드된 이미지 위에 추가적인 드로잉을 통해 꾸밀 수 있음
 - (연속된 동화를 보여주는 웹페이지를 제작 예정)
+<br>
+
+## 🎥 시연 영상
+#### 1. 홈화면
+<p align="center"><img src="https://github.com/ttoro-lee/Prompter_days/assets/89889583/16b0248f-2eeb-4142-aeaf-1383825c98d5" width="50%"></p>
+
+#### 2. 상상 친구 생성 서비스
+- <strong>step 1</strong> : DALLE-2를 이용해 상상친구를 생성합니다.
+<p align="center"><img src="https://github.com/ttoro-lee/Prompter_days/assets/89889583/90d06d3b-1ca6-4df4-a783-d1a7a7a16ebc" width="70%"></p>
+
+- <strong>step 2</strong> : 원하는대로 상상친구를 꾸밉니다. 마음에 들지 않는다면, 다시 생성할 수 있습니다.
+<p align="center"><img src="https://github.com/ttoro-lee/Prompter_days/assets/89889583/32c50aab-dbf4-48de-9e50-8bb7f39e1a04" width="70%"></p>
+
+- <strong>step 3</strong> : 상상친구와 나의 정보를 입력합니다.
+<p align="center"><img src="https://github.com/ttoro-lee/Prompter_days/assets/89889583/ad33bcb1-5609-4b2d-a99c-5e6a57752bd1" width="70%"></p>
+
+- <strong>step 4</strong> : ChatGPT API에 적용하여 대화합니다.
+<p align="center"><img src="https://github.com/ttoro-lee/Prompter_days/assets/89889583/6240021b-0a95-4ff1-8b76-f0ae68966c0e" width="70%"></p>
+
+#### 3. 동화 생성 서비스
+- 이미지 혹은 그림과 텍스트를 입력하고, GPT-4와 Google Vision API를 통해 이야기를 생성합니다.
+<p align="center"><img src="https://github.com/ttoro-lee/Prompter_days/assets/89889583/e5b27797-566e-482f-afe1-c9d133898250" width="70%"></p>
 <br>
 
 ## 📂 파일 구조
